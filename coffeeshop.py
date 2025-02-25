@@ -1,7 +1,7 @@
 #lets build a robot barista
 print("hello, welcome to dazai exist coffee!!!!!!!!!!!!!!!!!")
 name = input("what is your good name?\n")
-if name == "sujata" or name == "rock" or name == "loki":
+if name == "ujwal" or name == "arhant" or name == "om":
     evil_status=input("are you evil?(yes/no)\n")
     good_deeds=int(input("how many good deeds did you do today\n"))
     if evil_status == "yes" and good_deeds < 4:
