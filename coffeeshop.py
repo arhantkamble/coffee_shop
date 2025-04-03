@@ -1,34 +1,59 @@
-#lets build a robot barista
-print("hello, welcome to dazai exist coffee!!!!!!!!!!!!!!!!!")
-name = input("what is your good name?\n")
-if name == "ujwal" or name == "arhant" or name == "om":
-    evil_status=input("are you evil?(yes/no)\n")
-    good_deeds=int(input("how many good deeds did you do today\n"))
-    if evil_status == "yes" and good_deeds < 4:
-        print("evil people are not welcome here " + name + "!!!\nget lost!")
-        exit()       
-    else:
-        print("ohh! so you are one of those non evil " + name + (" get in!"))
-print("\nhello!! " + name + " thankyou so much for coming in today!:)\n\n")
-menu = "black coffee, latte, cappucino, cold coffee, espresso, frappuccino "
-order = input(name +",what would you like from our menu today, we are serving\n"+ menu +"\n\n")
-if order == "black coffee":
-    price = 3
-elif order.lower() == "latte":
-    price = 5
-elif order.lower() == "cappucino":
-    price = 5
-elif order.lower() == "cold coffee":
-    price = 6
-elif order.lower() == "espresso":
-    price = 7
-elif order.lower() == "frappuccino":
-    price = 10
-else:
-    print("\nSorry we don't serve that here!!!")
-    exit()
+import time
+
+print("Hello, welcome to Dazai Exist Coffee! ☕")
+name = input("What is your good name?
+")
+
+evil_customers = ["ujwal", "arhant", "om"]
+if name.lower() in evil_customers:
+    evil_status = input("Are you evil? (yes/no)
+").strip().lower()
+    good_deeds = input("How many good deeds did you do today?
+").strip()
     
-quantity = input(name +" how many coffee would you like?\n")
-total = price * int(quantity)
-print ("\nthankyou, your total will be: $" + str(total))
-print("\n\nsounds good " + name + " we will have that " +str(quantity)+" "+ order + " ready for you in a moment.")
+    while not good_deeds.isdigit():
+        print("Please enter a valid number!")
+        good_deeds = input("How many good deeds did you do today?
+").strip()
+    
+    if evil_status == "yes" and int(good_deeds) < 4:
+        print(f"Evil people are not welcome here, {name}!!!\nGet lost!")
+        exit()
+    else:
+        print(f"Oh! So you are one of those non-evil {name}s. Get in!")
+
+print(f"\nHello, {name}! Thank you so much for coming in today! :)")
+
+menu = {
+    "black coffee": 3,
+    "latte": 5,
+    "cappuccino": 5,
+    "cold coffee": 6,
+    "espresso": 7,
+    "frappuccino": 10
+}
+
+print("We are serving:")
+for item in menu:
+    print(f"- {item.title()} - ${menu[item]}")
+
+order = input(f"\n{name}, what would you like from our menu today?
+").strip().lower()
+
+if order not in menu:
+    print("\nSorry, we don't serve that here!")
+    exit()
+
+while True:
+    quantity = input(f"{name}, how many {order}s would you like?
+").strip()
+    if quantity.isdigit():
+        quantity = int(quantity)
+        break
+    print("Please enter a valid number!")
+
+total = menu[order] * quantity
+print(f"\nThank you, your total will be: ${total}")
+
+time.sleep(2) 
+print(f"\nSounds good, {name}! We will have your {quantity} {order}(s) ready for you in a moment. ☕")
